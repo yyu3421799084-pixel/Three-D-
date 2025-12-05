@@ -99,6 +99,23 @@ body {
     box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
 }
 
+.confirm-birthday-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+
+.confirm-birthday-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.4);
+}
+
 /* 加载页面样式 */
 .loading-page {
     position: fixed;

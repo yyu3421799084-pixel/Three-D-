@@ -5,8 +5,28 @@ let userInfo = {
     age: '',
     zodiac: '',
     birthday: '',
-    password: ''
+    password: '',
+    birthdayConfirmed: false
 };
+
+// 确认生日函数
+function confirmBirthday() {
+    const birthdayInput = document.getElementById('birthday');
+    const confirmMsg = document.getElementById('birthdayConfirmMsg');
+    
+    if (birthdayInput.value) {
+        userInfo.birthdayConfirmed = true;
+        confirmMsg.style.display = 'block';
+        birthdayInput.style.border = '2px solid green';
+        
+        // 3秒后隐藏确认消息
+        setTimeout(() => {
+            confirmMsg.style.display = 'none';
+        }, 3000);
+    } else {
+        alert('请先选择生日日期！');
+    }
+}
 
 // 存储主页卡1的选择答案
 let card1Answers = {
@@ -501,8 +521,12 @@ function showCardLogin(cardNumber) {
         if (loginPageVideo) {
             loginPageVideo.muted = false;
             loginPageVideo.currentTime = 0;
+            loginPageVideo.load(); // 重新加载视频
             loginPageVideo.play().catch(e => {
                 console.log(`登录页面${cardNumber}视频播放失败:`, e);
+                // 如果无法播放音频,尝试静音播放
+                loginPageVideo.muted = true;
+                loginPageVideo.play();
             });
         }
         

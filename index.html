@@ -53,7 +53,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="birthday">生日：</label>
-                        <input type="date" id="birthday" name="birthday" required>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="date" id="birthday" name="birthday" required style="flex: 1;">
+                            <button type="button" class="confirm-birthday-btn" onclick="confirmBirthday()">确认</button>
+                        </div>
+                        <span id="birthdayConfirmMsg" style="display: none; color: green; font-size: 14px; margin-top: 5px;">✓ 生日已确认</span>
                     </div>
                 </div>
                 <div class="form-row">
@@ -157,7 +161,7 @@
 
     <!-- 主页卡1详情页面 -->
     <div id="card1Page" class="card-page hidden">
-        <video class="card-page-video-bg" autoplay loop muted playsinline>
+        <video class="card-page-video-bg" autoplay loop playsinline>
             <source src="https://1854397163.v.123pan.cn/1854397163/25250639" type="video/mp4">
         </video>
         <div class="card-login">
