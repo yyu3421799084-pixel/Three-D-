@@ -53,11 +53,15 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="birthday">生日：</label>
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <input type="date" id="birthday" name="birthday" required style="flex: 1;">
-                            <button type="button" class="confirm-birthday-btn" onclick="confirmBirthday()">确认</button>
+                        <div class="birthday-input-container">
+                            <input type="date" id="birthday" name="birthday" class="birthday-date-input">
+                            <input type="text" id="birthdayManual" placeholder="格式: YYYY-MM-DD" class="birthday-manual-input hidden">
                         </div>
-                        <span id="birthdayConfirmMsg" style="display: none; color: green; font-size: 14px; margin-top: 5px;">✓ 生日已确认</span>
+                        <div class="birthday-buttons">
+                            <button type="button" class="switch-input-btn" onclick="switchBirthdayInput()">切换手动输入</button>
+                            <button type="button" class="confirm-birthday-btn" onclick="confirmBirthday()">确认生日</button>
+                        </div>
+                        <span id="birthdayConfirmMsg" class="birthday-confirm-msg">✓ 生日已确认</span>
                     </div>
                 </div>
                 <div class="form-row">

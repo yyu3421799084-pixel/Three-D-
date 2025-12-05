@@ -9,22 +9,69 @@ let userInfo = {
     birthdayConfirmed: false
 };
 
+// 切换生日输入模式
+let isManualInput = false;
+function switchBirthdayInput() {
+    const birthdayDate = document.getElementById('birthday');
+    const birthdayManual = document.getElementById('birthdayManual');
+    const switchBtn = document.querySelector('.switch-input-btn');
+    
+    isManualInput = !isManualInput;
+    
+    if (isManualInput) {
+        birthdayDate.classList.add('hidden');
+        birthdayManual.classList.remove('hidden');
+        switchBtn.textContent = '切换日期选择';
+        birthdayManual.focus();
+    } else {
+        birthdayDate.classList.remove('hidden');
+        birthdayManual.classList.add('hidden');
+        switchBtn.textContent = '切换手动输入';
+    }
+}
+
 // 确认生日函数
 function confirmBirthday() {
     const birthdayInput = document.getElementById('birthday');
+    const birthdayManual = document.getElementById('birthdayManual');
     const confirmMsg = document.getElementById('birthdayConfirmMsg');
     
-    if (birthdayInput.value) {
+    let birthdayValue = '';
+    
+    if (isManualInput) {
+        birthdayValue = birthdayManual.value.trim();
+        // 验证手动输入格式
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dateRegex.test(birthdayValue)) {
+            alert('请输入正确的日期格式: YYYY-MM-DD (例如: 2000-01-01)');
+            return;
+        }
+        // 验证日期是否有效
+        const date = new Date(birthdayValue);
+        if (isNaN(date.getTime())) {
+            alert('请输入有效的日期！');
+            return;
+        }
+        birthdayInput.value = birthdayValue;
+    } else {
+        birthdayValue = birthdayInput.value;
+    }
+    
+    if (birthdayValue) {
         userInfo.birthdayConfirmed = true;
         confirmMsg.style.display = 'block';
-        birthdayInput.style.border = '2px solid green';
+        if (isManualInput) {
+            birthdayManual.style.border = '2px solid green';
+        } else {
+            birthdayInput.style.border = '2px solid green';
+        }
         
         // 3秒后隐藏确认消息
         setTimeout(() => {
             confirmMsg.style.display = 'none';
         }, 3000);
     } else {
-        alert('请先选择生日日期！');
+        alert('请先选择或输入生日日期！');
     }
 }
 

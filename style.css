@@ -116,6 +116,61 @@ body {
     box-shadow: 0 3px 10px rgba(76, 175, 80, 0.4);
 }
 
+.birthday-input-container {
+    margin-bottom: 10px;
+}
+
+.birthday-date-input,
+.birthday-manual-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border 0.3s;
+}
+
+.birthday-date-input:focus,
+.birthday-manual-input:focus {
+    outline: none;
+    border-color: #d32f2f;
+}
+
+.birthday-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.switch-input-btn {
+    flex: 1;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.switch-input-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(33, 150, 243, 0.4);
+}
+
+.confirm-birthday-btn {
+    flex: 1;
+}
+
+.birthday-confirm-msg {
+    display: none;
+    color: green;
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
 /* 加载页面样式 */
 .loading-page {
     position: fixed;
