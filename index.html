@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D旋转圣诞树卡片</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 登录界面 -->
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <h1>欢迎来到圣诞世界</h1>
+            <form id="loginForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">姓名：</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">性别：</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">请选择</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">年龄：</label>
+                        <input type="number" id="age" name="age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zodiac">星座：</label>
+                        <select id="zodiac" name="zodiac" required>
+                            <option value="">请选择</option>
+                            <option value="白羊座">白羊座</option>
+                            <option value="金牛座">金牛座</option>
+                            <option value="双子座">双子座</option>
+                            <option value="巨蟹座">巨蟹座</option>
+                            <option value="狮子座">狮子座</option>
+                            <option value="处女座">处女座</option>
+                            <option value="天秤座">天秤座</option>
+                            <option value="天蝎座">天蝎座</option>
+                            <option value="射手座">射手座</option>
+                            <option value="摩羯座">摩羯座</option>
+                            <option value="水瓶座">水瓶座</option>
+                            <option value="双鱼座">双鱼座</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="birthday">生日：</label>
+                        <input type="date" id="birthday" name="birthday" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">密码：</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">登录/注册</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 加载页面 -->
+    <div id="loadingPage" class="loading-page hidden">
+        <div class="christmas-lights">
+            <div class="light light-red"></div>
+            <div class="light light-yellow"></div>
+            <div class="light light-green"></div>
+            <div class="light light-blue"></div>
+            <div class="light light-purple"></div>
+            <div class="light light-orange"></div>
+            <div class="light light-pink"></div>
+            <div class="light light-red"></div>
+            <div class="light light-yellow"></div>
+            <div class="light light-green"></div>
+            <div class="light light-blue"></div>
+            <div class="light light-purple"></div>
+        </div>
+        <div class="loading-content">
+            <img src="加载图.png" alt="加载" class="loading-icon">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill">
+                        <img src="图标1.png" alt="加载中" class="progress-moving-icon" id="progressIcon">
+                    </div>
+                </div>
+                <div class="progress-text"><span id="progressPercent">0</span>%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D旋转主页面 -->
+    <div id="mainPage" class="main-page hidden">
+        <video id="mainBackground" class="main-background" autoplay loop playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250643" type="video/mp4">
+        </video>
+        
+        <!-- 4个主页卡片 -->
+        <div class="cards-container">
+            <div class="card-wrapper" data-card="1">
+                <div class="card">
+                    <video id="card1Video" class="card-background" autoplay loop muted playsinline>
+                        <source src="https://1854397163.v.123pan.cn/1854397163/25250639" type="video/mp4">
+                    </video>
+                    <div class="card-content">
+                        <h2>主页卡1</h2>
+                        <p>点击进入</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-wrapper" data-card="2">
+                <div class="card">
+                    <video id="card2Video" class="card-background" autoplay loop muted playsinline>
+                        <source src="https://1854397163.v.123pan.cn/1854397163/25250642" type="video/mp4">
+                    </video>
+                    <div class="card-content">
+                        <h2>主页卡2</h2>
+                        <p>点击进入</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-wrapper" data-card="3">
+                <div class="card">
+                    <video id="card3Video" class="card-background" autoplay loop muted playsinline>
+                        <source src="https://1854397163.v.123pan.cn/1854397163/25250641" type="video/mp4">
+                    </video>
+                    <div class="card-content">
+                        <h2>主页卡3</h2>
+                        <p>点击进入</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-wrapper" data-card="4">
+                <div class="card">
+                    <video id="card4Video" class="card-background" autoplay loop muted playsinline>
+                        <source src="https://1854397163.v.123pan.cn/1854397163/25250640" type="video/mp4">
+                    </video>
+                    <div class="card-content">
+                        <h2>主页卡4</h2>
+                        <p>点击进入</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 返回按钮 -->
+        <button id="backToLogin" class="back-btn hidden" onclick="backToLogin()">返回登录</button>
+        <button id="backToMain" class="back-btn hidden" onclick="backToMain()">返回主页</button>
+    </div>
+
+    <!-- 主页卡1详情页面 -->
+    <div id="card1Page" class="card-page hidden">
+        <video class="card-page-video-bg" autoplay loop muted playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250639" type="video/mp4">
+        </video>
+        <div class="card-login">
+            <h2>主页卡1登录</h2>
+            <form id="card1LoginForm">
+                <div class="form-group">
+                    <label>输入你的名字：</label>
+                    <input type="text" id="card1Name" required>
+                </div>
+                <button type="submit">登录</button>
+                <button type="button" class="cancel-btn" onclick="backToMain()">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 主页卡1内容页面 -->
+    <div id="card1Content" class="card-content-page hidden">
+        <!-- 背景音乐音频标签 -->
+        <audio id="card1Music" loop>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250639" type="audio/mp4">
+        </audio>
+        
+        <div class="question-container">
+            <!-- 选项1 -->
+            <div id="question1" class="question active">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图11.jpg" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图11.jpg');"></div>
+                <div class="question-content">
+                    <h2>这个冬天你开心吗？</h2>
+                    <div class="options">
+                        <button onclick="selectOption(1, 'happy')">开心</button>
+                        <button onclick="selectOption(1, 'sad')">不开心</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选项2 -->
+            <div id="question2" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图12.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图12.jpg');"></div>
+                <div class="question-content">
+                    <h2>你是否喜欢圣诞节？</h2>
+                    <div class="options">
+                        <button onclick="selectOption(2, 'like')">喜欢</button>
+                        <button onclick="selectOption(2, 'dislike')">不喜欢</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选项3 -->
+            <div id="question3" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图13.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图13.jpg');"></div>
+                <div class="question-content">
+                    <h2>你想写入圣诞卡吗？</h2>
+                    <div class="options">
+                        <button onclick="selectOption(3, 'yes')">想</button>
+                        <button onclick="selectOption(3, 'no')">不想</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选项4 -->
+            <div id="question4" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图14.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图14.jpg');"></div>
+                <div class="question-content">
+                    <h2>写下你的圣诞心愿</h2>
+                    <div class="card-generator">
+                        <textarea id="wishContent" placeholder="在此写下你的心愿..."></textarea>
+                        <button onclick="generateCard()">生成圣诞卡</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确认对话框 -->
+    <div id="confirmDialog" class="confirm-dialog hidden">
+        <div class="dialog-content">
+            <h3>你确定要这样选择吗？</h3>
+            <button onclick="confirmDialog()">确定</button>
+        </div>
+    </div>
+
+    <!-- 生成的圣诞卡 -->
+    <div id="generatedCard" class="generated-card hidden">
+        <video class="generated-card-video-bg" autoplay loop muted playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250639" type="video/mp4">
+        </video>
+        <div class="card-display card-with-bg">
+            <h2>你的圣诞卡</h2>
+            <div id="cardInfo"></div>
+            <button onclick="backToMain()">返回主页</button>
+        </div>
+    </div>
+
+    <!-- 主页卡2、3、4的登录和内容页面 -->
+    <div id="card2Page" class="card-page hidden">
+        <video class="card-page-video-bg" autoplay loop muted playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250642" type="video/mp4">
+        </video>
+        <div class="card-login">
+            <h2>主页卡2登录</h2>
+            <form id="card2LoginForm">
+                <div class="form-group">
+                    <label>输入你的生日：</label>
+                    <input type="date" id="card2Birthday" required>
+                </div>
+                <button type="submit">登录</button>
+                <button type="button" class="cancel-btn" onclick="backToMain()">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="card2Content" class="card-content-page hidden">
+        <div class="question-container">
+            <!-- 内容卡1 -->
+            <div id="card2Question1" class="question active">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图21.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图21.jpg');"></div>
+                <div class="question-content">
+                    <h2>你最喜欢的明星是谁</h2>
+                    <div class="card-generator">
+                        <input type="text" id="card2Star" placeholder="请输入明星名字..." style="padding: 15px; font-size: 16px; border-radius: 8px; border: 2px solid #ddd; width: 100%;">
+                        <button onclick="card2NextQuestion(1)">确定</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容卡2 -->
+            <div id="card2Question2" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图22.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图22.jpg');"></div>
+                <div class="question-content">
+                    <h2>你最喜欢的朋友是谁</h2>
+                    <div class="card-generator">
+                        <input type="text" id="card2Friend" placeholder="请输入朋友名字..." style="padding: 15px; font-size: 16px; border-radius: 8px; border: 2px solid #ddd; width: 100%;">
+                        <button onclick="card2NextQuestion(2)">确认</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容卡3 -->
+            <div id="card2Question3" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图23.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图23.jpg');"></div>
+                <div class="question-content">
+                    <h2>你希望圣诞老人向你的圣诞袜子放什么礼物</h2>
+                    <div class="card-generator">
+                        <textarea id="card2Gift" placeholder="请输入你想要的礼物..." style="padding: 15px; font-size: 16px; border-radius: 8px; border: 2px solid #ddd; width: 100%; min-height: 100px;"></textarea>
+                        <button onclick="card2NextQuestion(3)">确认</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容卡4 -->
+            <div id="card2Question4" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline>
+                    <source src="图24.mp4" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图24.jpg');"></div>
+                <div class="question-content">
+                    <h2>是否生成礼物</h2>
+                    <div class="options">
+                        <button onclick="card2GenerateGift(true)">是</button>
+                        <button onclick="card2GenerateGift(false)">不是</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 圣诞礼物盒子 -->
+    <div id="card2GiftBox" class="generated-card hidden">
+        <video class="generated-card-video-bg" autoplay loop muted playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250642" type="video/mp4">
+        </video>
+        <div class="card-display card-with-bg">
+            <h2>🎁 你的圣诞礼物 🎁</h2>
+            <div id="card2GiftInfo"></div>
+            <button onclick="backToMain()">返回主页</button>
+        </div>
+    </div>
+
+    <div id="card3Page" class="card-page hidden">
+        <video class="card-page-video-bg" autoplay loop muted playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250641" type="video/mp4">
+        </video>
+        <div class="card-login">
+            <h2>主页卡3登录</h2>
+            <form id="card3LoginForm">
+                <div class="form-group">
+                    <label>输入你的星座：</label>
+                    <select id="card3Zodiac" required>
+                        <option value="">请选择</option>
+                        <option value="白羊座">白羊座</option>
+                        <option value="金牛座">金牛座</option>
+                        <option value="双子座">双子座</option>
+                        <option value="巨蟹座">巨蟹座</option>
+                        <option value="狮子座">狮子座</option>
+                        <option value="处女座">处女座</option>
+                        <option value="天秤座">天秤座</option>
+                        <option value="天蝎座">天蝎座</option>
+                        <option value="射手座">射手座</option>
+                        <option value="摩羯座">摩羯座</option>
+                        <option value="水瓶座">水瓶座</option>
+                        <option value="双鱼座">双鱼座</option>
+                    </select>
+                </div>
+                <button type="submit">登录</button>
+                <button type="button" class="cancel-btn" onclick="backToMain()">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="card3Content" class="card-content-page hidden">
+        <div class="question-container">
+            <!-- 选择题1 -->
+            <div id="card3Question1" class="question active">
+                <div class="question-bg" style="background-image: url('图31.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2 id="card3Q1Text"></h2>
+                    <div class="options">
+                        <button onclick="card3AnswerQuestion(1, 'A')">A. <span id="card3Q1OptionA"></span></button>
+                        <button onclick="card3AnswerQuestion(1, 'B')">B. <span id="card3Q1OptionB"></span></button>
+                        <button onclick="card3AnswerQuestion(1, 'C')">C. <span id="card3Q1OptionC"></span></button>
+                        <button onclick="card3AnswerQuestion(1, 'D')">D. <span id="card3Q1OptionD"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选择题2 -->
+            <div id="card3Question2" class="question">
+                <div class="question-bg" style="background-image: url('图32.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2 id="card3Q2Text"></h2>
+                    <div class="options">
+                        <button onclick="card3AnswerQuestion(2, 'A')">A. <span id="card3Q2OptionA"></span></button>
+                        <button onclick="card3AnswerQuestion(2, 'B')">B. <span id="card3Q2OptionB"></span></button>
+                        <button onclick="card3AnswerQuestion(2, 'C')">C. <span id="card3Q2OptionC"></span></button>
+                        <button onclick="card3AnswerQuestion(2, 'D')">D. <span id="card3Q2OptionD"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选择题3 -->
+            <div id="card3Question3" class="question">
+                <div class="question-bg" style="background-image: url('图33.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2 id="card3Q3Text"></h2>
+                    <div class="options">
+                        <button onclick="card3AnswerQuestion(3, 'A')">A. <span id="card3Q3OptionA"></span></button>
+                        <button onclick="card3AnswerQuestion(3, 'B')">B. <span id="card3Q3OptionB"></span></button>
+                        <button onclick="card3AnswerQuestion(3, 'C')">C. <span id="card3Q3OptionC"></span></button>
+                        <button onclick="card3AnswerQuestion(3, 'D')">D. <span id="card3Q3OptionD"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 祝福语页面 -->
+            <div id="card3Blessing" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                    <source src="https://1854397163.v.123pan.cn/1854397163/25250641" type="video/mp4">
+                </video>
+                <div class="question-bg" style="background-image: url('图34.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; filter: brightness(0.3); opacity: 0.8;"></div>
+                <div class="question-content" style="z-index: 2;">
+                    <h2 style="font-size: 3em; color: #FFD700; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">🎄 祝你圣诞节快乐! 🎅</h2>
+                    <p style="font-size: 1.5em; margin-top: 30px; color: white;">愿你的每一天都充满欢乐与温馨!</p>
+                    <button onclick="backToMain()" style="margin-top: 40px;">返回主页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="card4Page" class="card-page hidden">
+        <video class="card-page-video-bg" autoplay loop muted playsinline>
+            <source src="https://1854397163.v.123pan.cn/1854397163/25250640" type="video/mp4">
+        </video>
+        <div class="card-login">
+            <h2>主页卡4登录</h2>
+            <form id="card4LoginForm">
+                <div class="form-group">
+                    <label>输入你的密码：</label>
+                    <input type="password" id="card4Password" required>
+                </div>
+                <button type="submit">登录</button>
+                <button type="button" class="cancel-btn" onclick="backToMain()">取消</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="card4Content" class="card-content-page hidden">
+        <div class="question-container">
+            <!-- 谜语1 -->
+            <div id="card4Riddle1" class="question active">
+                <div class="question-bg" style="background-image: url('图41.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2 id="card4R1Text"></h2>
+                    <div class="options">
+                        <button onclick="card4AnswerRiddle(1, 'A')">A. <span id="card4R1OptionA"></span></button>
+                        <button onclick="card4AnswerRiddle(1, 'B')">B. <span id="card4R1OptionB"></span></button>
+                        <button onclick="card4AnswerRiddle(1, 'C')">C. <span id="card4R1OptionC"></span></button>
+                        <button onclick="card4AnswerRiddle(1, 'D')">D. <span id="card4R1OptionD"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 谜语2 -->
+            <div id="card4Riddle2" class="question">
+                <div class="question-bg" style="background-image: url('图42.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2 id="card4R2Text"></h2>
+                    <div class="options">
+                        <button onclick="card4AnswerRiddle(2, 'A')">A. <span id="card4R2OptionA"></span></button>
+                        <button onclick="card4AnswerRiddle(2, 'B')">B. <span id="card4R2OptionB"></span></button>
+                        <button onclick="card4AnswerRiddle(2, 'C')">C. <span id="card4R2OptionC"></span></button>
+                        <button onclick="card4AnswerRiddle(2, 'D')">D. <span id="card4R2OptionD"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 谜语3 -->
+            <div id="card4Riddle3" class="question">
+                <div class="question-bg" style="background-image: url('图43.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2 id="card4R3Text"></h2>
+                    <div class="options">
+                        <button onclick="card4AnswerRiddle(3, 'A')">A. <span id="card4R3OptionA"></span></button>
+                        <button onclick="card4AnswerRiddle(3, 'B')">B. <span id="card4R3OptionB"></span></button>
+                        <button onclick="card4AnswerRiddle(3, 'C')">C. <span id="card4R3OptionC"></span></button>
+                        <button onclick="card4AnswerRiddle(3, 'D')">D. <span id="card4R3OptionD"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 随机按钮页面 -->
+            <div id="card4RandomButtons" class="question">
+                <div class="question-bg" style="background-image: url('图44.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+                <div class="question-content">
+                    <h2>猜一猜,圣诞老人藏在哪里?</h2>
+                    <div class="options" id="card4RandomButtonsContainer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 500px; margin: 0 auto;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最终祝福页面 -->
+            <div id="card4FinalBlessing" class="question">
+                <video class="question-video-bg" autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                    <source src="https://1854397163.v.123pan.cn/1854397163/25250640" type="video/mp4">
+                </video>
+                <div class="question-content" style="z-index: 2;">
+                    <h2 style="font-size: 3em; color: #FFD700; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);">🎄 希望我们能够在下一个圣诞节相遇 🎅</h2>
+                    <p style="font-size: 1.5em; margin-top: 30px; color: white;">期待与你的再次重逢!</p>
+                    <button onclick="backToMain()" style="margin-top: 40px;">返回主页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
